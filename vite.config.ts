@@ -7,8 +7,7 @@ export default defineConfig({
   plugins: [ react(), tsconfigPaths() ],
   css: {
     postcss: {
-      plugins: [ autoprefixer() ], 
-    }, 
-  }, 
+      plugins: [ autoprefixer() ] 
+    } 
+  } 
 })
-
