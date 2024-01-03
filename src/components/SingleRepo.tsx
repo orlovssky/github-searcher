@@ -11,12 +11,13 @@ import {
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { IconFile, IconFolder } from '@tabler/icons-react'
-import getRepo, { Entry } from 'api/requests/getRepo.ts'
+import getRepo from 'api/requests/getRepo.ts'
 import classes from 'assets/styles/repo.module.css'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Entry } from 'typings/repo.ts'
 
-const Repo = () => {
+const SingleRepo = () => {
   let { repoData } = useParams()
   const navigate = useNavigate()
   const [opened, { open, close }] = useDisclosure(false)
@@ -123,4 +124,4 @@ const Repo = () => {
   )
 }
 
-export default Repo
+export default SingleRepo

@@ -1,24 +1,26 @@
 .box {
   @mixin hover {
-    background-color: var(--mantine-color-violet-3);
     color: white;
+    background-color: var(--mantine-color-violet-3);
   }
+
   cursor: pointer;
+
   display: flex;
   align-items: center;
 
-  background-color: var(--mantine-color-gray-0);
-  transition: all 150ms ease;
   padding: var(--mantine-spacing-xs);
+
+  background-color: var(--mantine-color-gray-0);
   border-radius: var(--mantine-radius-lg);
+
+  transition: all 150ms ease;
 }
 
 .card {
-  padding: var(--mantine-spacing-xl);
-
   position: relative;
-
   overflow: hidden;
+  padding: var(--mantine-spacing-xl);
   background-color: var(--mantine-color-violet-0);
 
   &::before {
@@ -37,6 +39,6 @@
 
 .code {
   padding: var(--mantine-spacing-md);
-  border-radius: var(--mantine-radius-lg);
   background-color: var(--mantine-color-gray-1);
+  border-radius: var(--mantine-radius-lg);
 }

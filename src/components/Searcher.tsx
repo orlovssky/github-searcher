@@ -12,7 +12,7 @@ import getRepos from 'api/requests/getRepos.ts'
 import searching from 'assets/images/cat.svg'
 import SearcherRepos from 'components/SearcherRepos.tsx'
 import { useEffect, useState } from 'react'
-import { Repository } from 'stores/search.ts'
+import { Repository } from 'typings/repos.ts'
 
 const Searcher = () => {
   const [search, setSearch] = useState('')

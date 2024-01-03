@@ -1,8 +1,8 @@
 import '@mantine/core/styles.css'
 import { createTheme, MantineProvider } from '@mantine/core'
 import Header from 'components/Header.tsx'
-import Repo from 'components/Repo.tsx'
 import Searcher from 'components/Searcher.tsx'
+import SingleRepo from 'components/SingleRepo.tsx'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':repoData',
-        element: <Repo />
+        element: <SingleRepo />
       }
     ]
   }

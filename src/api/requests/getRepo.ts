@@ -1,25 +1,8 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
 import { gql } from 'graphql-request'
 import { parse } from 'graphql/index'
+import { Response } from 'typings/repo.ts'
 import client from '../index.ts'
-
-export interface Entry {
-  oid: string
-  name: string
-  type: 'blob' | 'tree'
-  object: {
-    text: string
-  }
-}
-export interface Response {
-  node: {
-    name: string
-    description: string
-    object: {
-      entries: Entry[]
-    }
-  }
-}
 
 export default (repoId?: string, treeOid?: string) => {
   const query: TypedDocumentNode<Response> = parse(gql`

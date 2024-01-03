@@ -1,14 +1,8 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core'
 import { gql } from 'graphql-request'
 import { parse } from 'graphql/index'
-import { Repository } from 'stores/search.ts'
+import { Response } from 'typings/repos.ts'
 import client from '../index.ts'
-
-interface Response {
-  search: {
-    repos: { repo: Repository }[]
-  }
-}
 
 export default (search: string) => {
   const query: TypedDocumentNode<Response> = parse(gql`

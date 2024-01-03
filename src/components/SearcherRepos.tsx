@@ -11,7 +11,7 @@ import {
 import { IconGitFork, IconStar } from '@tabler/icons-react'
 import classes from 'assets/styles/repos.module.css'
 import { Link } from 'react-router-dom'
-import { Repository } from 'stores/search.ts'
+import { Repository } from 'typings/repos.ts'
 
 const SearcherRepos = ({ repos }: { repos: Repository[] }) => {
   const encode = (repoId: string, treeOid: string) => {
