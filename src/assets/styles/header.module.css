@@ -7,28 +7,29 @@
 .inner {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: rem(56px);
 }
 
 .link {
-  @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
-  }
+  display: inline-block;
+  display: flex;
+  align-items: center;
 
-  display: block;
+  height: rem(56px);
 
-  padding: rem(8px) rem(12px);
-
-  font-size: var(--mantine-font-size-sm);
-  font-weight: 500;
-  line-height: 1;
-  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
   text-decoration: none;
-
-  border-radius: var(--mantine-radius-sm);
 }
 
-.linkLabel {
-  margin-right: rem(5px);
+.text {
+  --text-fz: var(--mantine-font-size-xl);
+  --text-lh: var(--mantine-line-height-xl);
+  --text-gradient: linear-gradient(90deg, var(--mantine-color-violet-7) 0%, var(--mantine-color-pink-6) 100%);
+
+  font-weight: 900;
+
+  background-image: var(--text-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
 }

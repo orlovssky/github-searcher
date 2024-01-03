@@ -1,29 +1,18 @@
-import {
-  Container, Image, Space, Text
-} from '@mantine/core'
+import { Container, Image, Space, Text } from '@mantine/core'
 import logo from 'assets/images/logo.svg'
 import classes from 'assets/styles/header.module.css'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
-
   return (
     <header className={classes.header}>
-      <Container size='md'>
+      <Container size="md">
         <div className={classes.inner}>
-          <Image
-            h='100%'
-            src={logo}
-          />
-
-          <Space w='xs' />
-
-          <Text
-            fw={900}
-            gradient={{ from: '#D33213', to: '#F9DB00', deg: 90 }}
-            size='xl'
-            variant='gradient'
-          >Github searcher
-          </Text>
+          <Link to="/" className={classes.link}>
+            <Image h="100%" src={logo} />
+            <Space w="xs" />
+            <Text className={classes.text}>Github searcher</Text>
+          </Link>
         </div>
       </Container>
     </header>

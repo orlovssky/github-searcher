@@ -1,41 +1,88 @@
-import { TextInput } from '@mantine/core'
-import { useDebouncedState } from '@mantine/hooks'
-import { useEffect } from 'react'
-
-const token = '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'
+import {
+  ActionIcon,
+  Center,
+  Container,
+  Image,
+  Loader,
+  TextInput
+} from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
+import { IconSearch, IconX } from '@tabler/icons-react'
+import getRepos from 'api/requests/getRepos.ts'
+import searching from 'assets/images/cat.svg'
+import SearcherRepos from 'components/SearcherRepos.tsx'
+import { useEffect, useState } from 'react'
+import { Repository } from 'stores/search.ts'
 
 const Searcher = () => {
-  const [ search, setSearch ] = useDebouncedState('', 500)
-  useEffect(() => {
-    if (!search) return
-
-    try {
-      fetch('https://api.github.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `bearer ${token}`
-        },
-        body: JSON.stringify({ query: 'query {search(query: \'asd\', type: \'REPOSITORY\') {nodes {name}}}' })
-      }).then((res) => res.json()).
-        then((res) => {
-          console.log('===========---------')
-          console.log(res)
-          console.log('===========---------')
-        })
-    } catch (e) {
-      console.log(e)
+  const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [debounced] = useDebouncedValue(search, 500)
+  const [repos, setRepos] = useState<Repository[]>([])
+  const changeSearch = (value: string) => {
+    if (!value) {
+      setRepos([])
     }
-  }, [ search ])
+
+    setSearch(value)
+  }
+
+  useEffect(() => {
+    if (!debounced) {
+      return
+    }
+
+    setIsLoading(true)
+    setRepos([])
+
+    getRepos(debounced)
+      .then((data) => {
+        setRepos(data.search.repos.map((repo) => repo.repo))
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [debounced])
 
   return (
-    <TextInput
-      defaultValue={search}
-      placeholder='Code'
-      radius='lg'
-      size='xl'
-      onChange={(event) => setSearch(event.currentTarget.value)}
-    />
+    <Container mt="xl" size="md">
+      <Container size="xs">
+        <TextInput
+          placeholder="Repository"
+          radius="lg"
+          size="xl"
+          value={search}
+          leftSection={<IconSearch />}
+          rightSection={
+            Boolean(search) && (
+              <ActionIcon
+                variant="subtle"
+                radius="xl"
+                disabled={isLoading}
+                onClick={() => changeSearch('')}
+              >
+                <IconX />
+              </ActionIcon>
+            )
+          }
+          onChange={(event) => changeSearch(event.currentTarget.value)}
+        />
+      </Container>
+
+      {isLoading && (
+        <Center h={80}>
+          <Loader size="lg" type="dots" />
+        </Center>
+      )}
+
+      {!isLoading && Boolean(search) && <SearcherRepos repos={repos} />}
+
+      {!isLoading && !Boolean(search) && (
+        <Container size="sm">
+          <Image src={searching} />
+        </Container>
+      )}
+    </Container>
   )
 }
 

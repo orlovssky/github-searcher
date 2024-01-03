@@ -2,11 +2,11 @@ import react from '@vitejs/plugin-react'
 import autoprefixer from 'autoprefixer'
 import postcssPresetMantine from 'postcss-preset-mantine'
 import postcssSimpleVars from 'postcss-simple-vars'
-import tsconfigPaths from 'vite-tsconfig-paths'
 import { defineConfig } from 'vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  plugins: [ react(), tsconfigPaths() ],
+  plugins: [react(), tsconfigPaths()],
   css: {
     postcss: {
       plugins: [
@@ -20,8 +20,8 @@ export default defineConfig({
             'mantine-breakpoint-lg': '75em',
             'mantine-breakpoint-xl': '88em'
           }
-        }) 
+        })
       ]
-    } 
+    }
   }
 })

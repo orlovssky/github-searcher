@@ -10,6 +10,7 @@
 
   overflow: hidden;
 
+  height: 100%;
   padding: var(--mantine-spacing-xl);
   padding-left: calc(var(--mantine-spacing-xl) * 2);
 
@@ -27,10 +28,11 @@
 
     width: rem(6px);
 
-    background-image: linear-gradient(
-      0deg,
-      var(--mantine-color-pink-6),
-      var(--mantine-color-orange-6)
-    );
+    background-color: var(--mantine-color-violet-9);
   }
+}
+
+.link {
+  color: unset;
+  text-decoration: none;
 }
